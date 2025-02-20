@@ -38,9 +38,9 @@ Con el proyecto Arkanoid, se espera:
 
 | Miembro                           | Rol                | Función Principal                    | Correo                       |
 |------------------------------------|--------------------|--------------------------------------|------------------------------|
+| *Bryan Alexander Peñaloza Huamán*| Diseño y Base de Datos | Diseño de la base de datos, desarrollo técnico y modelo del juego | bryan.penaloza@upch.pe       |
 | *Edwin Junior Jara Bocanegra*    | Desarrollo Técnico | Prototipado, implementación del juego y desarrollo técnico     | edwin.jara@upch.pe           |
 | *Rodrigo Alonso Rodríguez Reategui*        | Desarrollo Técnico | Implementación del sistema de juego y desarrollo técnico  | jose.ames@upch.pe            |
-| *Bryan Alexander Peñaloza Huamán*| Diseño y Base de Datos | Diseño de la base de datos, desarrollo técnico y modelo del juego | bryan.penaloza@upch.pe       |
 | *José Manuel Ames Anapán*| Investigación     | Pruebas y validación del juego       | rodrigo.rodriguez@upch.pe    |
 | *Victoria Beatriz Castro Pichihua*| Investigación      | Pruebas, implementación del sistema de juego y documentación              | victoria.castro@upch.pe      |
 
