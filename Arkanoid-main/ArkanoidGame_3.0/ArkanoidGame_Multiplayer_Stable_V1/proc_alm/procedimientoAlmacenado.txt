@@ -1,0 +1,47 @@
+DELIMITER $$
+
+CREATE PROCEDURE calculate_winner_from_db(IN session_id INT)
+BEGIN
+    DECLARE max_votes INT DEFAULT 0;
+    DECLARE tie_count INT DEFAULT 0;
+    DECLARE chosen_position VARCHAR(50) DEFAULT '';
+
+    -- Contar los votos para la posición con más votos
+    SELECT position, COUNT(*) AS vote_count INTO @position, @max_votes
+    FROM multiplayer_movements
+    WHERE session_id = session_id AND read_status = FALSE
+    GROUP BY position
+    ORDER BY vote_count DESC
+    LIMIT 1;
+
+    -- Verificar si hay un empate
+    SELECT COUNT(*) INTO @tie_count
+    FROM (
+        SELECT COUNT(*) AS vote_count
+        FROM multiplayer_movements
+        WHERE session_id = session_id AND read_status = FALSE
+        GROUP BY position
+        HAVING vote_count = max_votes
+    ) AS t;
+
+    -- Si hay un empate, seleccionar uno aleatoriamente
+    IF tie_count > 1 THEN
+        SELECT position INTO @chosen_position
+        FROM multiplayer_movements
+        WHERE session_id = session_id AND read_status = FALSE
+        ORDER BY RAND()
+        LIMIT 1;
+    ELSE
+        SET @chosen_position = @position;
+    END IF;
+
+    -- Actualizar los votos a "leídos"
+    UPDATE multiplayer_movements
+    SET read_status = TRUE
+    WHERE session_id = session_id AND read_status = FALSE;
+
+    -- Retornar la posición ganadora
+    SELECT @chosen_position AS winner;
+END $$
+
+DELIMITER ;
